@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Crop Recommendation</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #2e7d32, #66bb6a);
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            background: white;
+            color: black;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+
+        button {
+            background: #2e7d32;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 95%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🌾 Smart Crop Recommendation System</h1>
+
+    <div class="container">
+        <h2>Enter Soil & Climate Data</h2>
+
+        <form action="/predict" method="post">
+
+            <input type="number" name="nitrogen" placeholder="Nitrogen (N)" required>
+            <input type="number" name="phosphorus" placeholder="Phosphorus (P)" required>
+            <input type="number" name="potassium" placeholder="Potassium (K)" required>
+            <input type="number" step="0.1" name="temperature" placeholder="Temperature (°C)" required>
+            <input type="number" step="0.1" name="humidity" placeholder="Humidity (%)" required>
+            <input type="number" step="0.1" name="rainfall" placeholder="Rainfall (mm)" required>
+            <input type="number" step="0.1" name="ph" placeholder="pH Value" required>
+
+            <button type="submit">Recommend Crop</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Recommended Crop: {{ prediction }}
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
